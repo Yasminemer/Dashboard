@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: url(back.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        .login-box {
+             width: 400px;
+                height: 400px;
+                padding: 80px;
+                box-sizing: border-box;
+                background: #F5F5F5;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            font-size:25px;
+            font-family: 'montserat' ,sans-serif;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            border: none;
+            border-bottom: 1px solid black;
+            background: transparent;
+            outline: none;
+  
+            font-size: 16px;
+            margin-bottom:20px;
+            width:100%;
+            font-family: 'montserat' ,sans-serif;
+        }
+        
+
+        button {
+             font-family: 'montserat' ,sans-serif;
+	           width: 100%;
+	           height: 30px;
+	           background: linear-gradient(90deg, rgba(58,222,159,1) 0%, rgba(0,153,150,1) 100%);
+	           border: none;
+	           outline: none;
+	           border-radius: 6px;
+	           cursor: pointer;
+	           font-size: 1em;
+	           color:#fff;
+	           font-weight: 500;
+               margin-top:20px;
+               margin-bottom:10px;
+        }
+        .signin{
+            text-align:center;
+            text-decoration:none;
+            align-items:center;
+            padding-top:20px;
+            color: #009996;
+          
+            font-weight:700;
+            font-family: 'montserat' ,sans-serif;
+        }
+        label{
+            font-family: 'montserat' ,sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2> Login </h2>
+        <form id ="form">
+            <div class="input-group">
+                <label >Username</label>
+                <input type="text" id="username" name="username" required >
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" name="password" required >
+            </div>
+            
+            <button type="submit">Login</button>
+            <a href="B.html" class="signin"> Sign in ?</a>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script>
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Cookies.set('loggedIn', 'true');
+                        window.location.href = 'about.html';
+                    } else {
+                        alert('Erreur: Nom d\'utilisateur ou mot de passe incorrect.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
