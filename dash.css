@@ -1,10 +1,11 @@
-
+/* en general */
 body {
     font-family: Arial, sans-serif;
     background-color:#F5F5F5  !important;
     text-align: center;
     height:190vh;
     
+/* nav bar */
  
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -192,6 +193,7 @@ input[type="checkbox"]:checked ~ .slide ul li{
     transform: translatex(calc(0 * var(--i)));
 
 } 
+/* analyse.html */
 
 .main-paragraph {
     color: #262626 ;
@@ -221,15 +223,7 @@ h1 {
     text-decoration: none;
 
 }
-
-.ligne {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;   
-    font-size: 2em !important; 
-    margin: 0 10px !important; 
-    cursor: pointer !important;
-}
+/* about.html */
 
 .principle-boxes {
     display: flex;
@@ -297,6 +291,7 @@ section:nth-child(2){
 
 }
 
+/* dash.html */
 
 .box {
    
